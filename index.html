@@ -12,6 +12,7 @@
       align-items:center;
       background:linear-gradient(135deg,#fff0f6,#ffe6f0);
       font-family:Arial, sans-serif;
+      transition:opacity 2s ease; /* fade effect */
     }
     dotlottie-wc{width:320px;height:320px;display:block}
     h1{
@@ -37,7 +38,7 @@
     .hint{margin-top:8px;color:#666;font-size:.9rem}
   </style>
 </head>
-<body>
+<body id="pageBody">
   <!-- Rose animation -->
   <dotlottie-wc
     src="https://lottie.host/f76a8dc1-1aa7-4d0a-b7f8-00a47706b1d7/ce0IcNAP5M.lottie"
@@ -52,7 +53,7 @@
   <div id="hint" class="hint">Tap Play to start music</div>
 
   <!-- Background music -->
-  <audio id="bgAudio" preload="auto" loop>
+  <audio id="bgAudio" preload="auto">
     <source src="https://natig101.github.io/Nina-s-Surprise/shades.mp3" type="audio/mpeg">
   </audio>
 
@@ -64,12 +65,13 @@
     const audio = document.getElementById('bgAudio');
     const msg = document.getElementById('message');
     const hint = document.getElementById('hint');
+    const body = document.getElementById('pageBody');
 
     btn.addEventListener('click', async () => {
       btn.disabled = true;
       btn.textContent = 'Starting...';
       try {
-        await audio.play(); // user gesture allows playback
+        await audio.play();
         msg.classList.add('visible');
         btn.style.display = 'none';
         hint.textContent = '';
@@ -79,6 +81,17 @@
         btn.textContent = 'Try Again';
         hint.textContent = 'Could not play audio. Check file URL.';
       }
+    });
+
+    // When audio ends, fade out everything
+    audio.addEventListener('ended', () => {
+      body.style.opacity = '0'; // fade out page
+      setTimeout(() => {
+        // Option A: redirect to blank page
+        window.location.href = "about:blank";
+        // Option B: try to close (works only if opened by JS)
+        // window.close();
+      }, 2000); // wait for fade effect
     });
   </script>
 </body>
