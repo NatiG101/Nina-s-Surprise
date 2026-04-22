@@ -20,21 +20,21 @@ for (let i = 0; i < 30; i++) {
 }
 
 btn.addEventListener('click', async () => {
-  btn.disabled = true;
-  btn.textContent = 'Starting...';
-  try {
-    await audio.play();
-    msg.classList.add('visible');
-    roseAnim.classList.add('visible'); // show rose animation
-    btn.style.display = 'none';
-    hint.textContent = '';
-  } catch (err) {
-    console.error('Playback failed:', err);
-    btn.disabled = false;
-    btn.textContent = 'Try Again';
-    hint.textContent = 'Could not play audio. Check file URL.';
-  }
-});
+    btn.disabled = true;
+    btn.textContent = 'Starting...';
+    try {
+      await audio.play();
+      msg.classList.add('visible');
+      roseAnim.classList.add('visible'); // fade in rose animation
+      btn.style.display = 'none';
+      hint.textContent = '';
+    } catch (err) {
+      console.error('Playback failed:', err);
+      btn.disabled = false;
+      btn.textContent = 'Try Again';
+      hint.textContent = 'Could not play audio. Check file URL.';
+    }
+  })  
 
 // Fade out after audio ends
 audio.addEventListener('ended', () => {
