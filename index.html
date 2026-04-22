@@ -1,43 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
   <title>🌹 Surprise Rose</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: linear-gradient(135deg, #fff0f6, #ffe6f0);
-      font-family: Arial, sans-serif;
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#fff0f6,#ffe6f0);
+      font-family:Arial, sans-serif;
     }
-    #rose {
-      width: 350px;
-      height: 350px;
+    dotlottie-wc{width:320px;height:320px;display:block}
+    h1{
+      margin-top:18px;
+      color:#b30059;
+      text-shadow:1px 1px 3px #fff;
+      opacity:0;
+      transform:translateY(20px);
+      transition:opacity .8s,transform .8s;
     }
-    h1 {
-      position: absolute;
-      bottom: 30px;
-      font-size: 1.5em;
-      color: #b30059;
-      text-shadow: 1px 1px 3px #fff;
+    h1.visible{opacity:1;transform:translateY(0)}
+    .btn{
+      margin-top:20px;
+      background:#b30059;
+      color:#fff;
+      border:none;
+      padding:10px 18px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:1rem;
+      box-shadow:0 6px 18px rgba(179,0,89,0.25);
     }
+    .hint{margin-top:8px;color:#666;font-size:.9rem}
   </style>
 </head>
 <body>
-  <div id="rose"></div>
-  <h1>For You, My Love 🌹</h1>
+  <!-- Rose animation -->
+  <dotlottie-wc
+    src="https://lottie.host/f76a8dc1-1aa7-4d0a-b7f8-00a47706b1d7/ce0IcNAP5M.lottie"
+    autoplay loop>
+  </dotlottie-wc>
+
+  <!-- Romantic message -->
+  <h1 id="message">For You, My Love 🌹</h1>
+
+  <!-- Play button -->
+  <button id="playBtn" class="btn">Play Surprise</button>
+  <div id="hint" class="hint">Tap Play to start music</div>
+
+  <!-- Background music -->
+  <audio id="bgAudio" preload="auto" loop>
+    <source src="https://natig101.github.io/Nina-s-Surprise/shades.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Lottie script -->
+  <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js"></script>
+
   <script>
-    lottie.loadAnimation({
-      container: document.getElementById('rose'),
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: 'Nina.json' // must match your file name exactly
+    const btn = document.getElementById('playBtn');
+    const audio = document.getElementById('bgAudio');
+    const msg = document.getElementById('message');
+    const hint = document.getElementById('hint');
+
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.textContent = 'Starting...';
+      try {
+        await audio.play(); // user gesture allows playback
+        msg.classList.add('visible');
+        btn.style.display = 'none';
+        hint.textContent = '';
+      } catch (err) {
+        console.error('Playback failed:', err);
+        btn.disabled = false;
+        btn.textContent = 'Try Again';
+        hint.textContent = 'Could not play audio. Check file URL.';
+      }
     });
-  </script>  
+  </script>
 </body>
 </html>
