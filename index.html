@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌹 Surprise Rose</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.4/lottie.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #fff0f6, #ffe6f0);
+      font-family: Arial, sans-serif;
+    }
+    #rose {
+      width: 350px;
+      height: 350px;
+    }
+    h1 {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1.5em;
+      color: #b30059;
+      text-shadow: 1px 1px 3px #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="rose"></div>
+  <h1>For You, My Love 🌹</h1>
+  <script>
+    lottie.loadAnimation({
+      container: document.getElementById('rose'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'Nina.json' // must match your file name exactly
+    });
+  </script>  
+</body>
+</html>
