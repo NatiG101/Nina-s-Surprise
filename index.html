@@ -46,15 +46,16 @@
     }
 
     dotlottie-wc {
-      width: 50vw;
-      height: 50vw;
-      max-width: 600px;
-      max-height: 600px;
-      display: none; /* hidden initially */
-    }
-    dotlottie-wc.visible {
-      display: block; /* show when class added */
-    }
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  opacity: 0;          /* invisible but still rendered */
+  transition: opacity 1.5s ease; /* smooth fade-in */
+}
+dotlottie-wc.visible {
+  opacity: 1;          /* fade in when class added */
+}
 
     h1 {
       margin-top: 5vh;
