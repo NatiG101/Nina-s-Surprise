@@ -47,11 +47,12 @@
 
     /* Rose animation hidden initially */
     dotlottie-wc {
-      width: 50vw;
-      height: 50vw;
-      max-width: 600px;
-      max-height: 600px;
+      width: 60vw;   /* larger but still responsive */
+      height: 60vw;
+      max-width: 700px;
+      max-height: 700px;
       display: none; /* hidden until button click */
+      image-rendering: crisp-edges; /* force sharp rendering */
     }
     dotlottie-wc.visible {
       display: block;
@@ -61,7 +62,7 @@
     h1 {
       margin-top: 5vh;
       font-family: 'Tangerine', cursive;
-      font-size: 10vw;
+      font-size: 8vw;
       max-font-size: 100px;
       color: #b30059;
       text-shadow: 0 0 10px rgba(255,255,255,0.8);
@@ -70,6 +71,8 @@
       transition: opacity 1.5s ease, transform 1.5s ease;
       animation: glow 3s ease-in-out infinite alternate;
       text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     h1.visible { opacity: 1; transform: translateY(0); }
 
