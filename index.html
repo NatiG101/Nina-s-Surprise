@@ -106,66 +106,21 @@
   </dotlottie-wc>
 
   <!-- Romantic message -->
-  <h1 id="message">For You, Mearey🌹</h1>
+  <h1 id="message">For You, My Love 🌹</h1>
 
   <!-- Play button -->
   <button id="playBtn" class="btn">Play Surprise</button>
-  <div id="hint" class="hint">Tap the button ninaye</div>
+  <div id="hint" class="hint">Tap Play to start music</div>
 
   <!-- Background music -->
   <audio id="bgAudio" preload="auto">
-    <source src="https://natig101.github.io/Nina-s-Surprise/shades.mp3" type="audio/mpeg">
+    <source src="shades.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Lottie script -->
   <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js"></script>
 
-  <script>
-    const btn = document.getElementById('playBtn');
-    const audio = document.getElementById('bgAudio');
-    const msg = document.getElementById('message');
-    const hint = document.getElementById('hint');
-    const body = document.getElementById('pageBody');
-    const roseAnim = document.getElementById('roseAnim');
-
-    // Generate 30 random stars
-    const starContainer = document.getElementById('stars');
-    for (let i = 0; i < 30; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.top = Math.random() * 100 + '%';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.animationDelay = (Math.random() * 4) + 's';
-      const size = (Math.random() * 3) + 1;
-      star.style.width = size + 'px';
-      star.style.height = size + 'px';
-      starContainer.appendChild(star);
-    }
-
-    btn.addEventListener('click', async () => {
-      btn.disabled = true;
-      btn.textContent = 'Starting...';
-      try {
-        await audio.play();
-        msg.classList.add('visible');
-        roseAnim.classList.add('visible'); // show rose animation
-        btn.style.display = 'none';
-        hint.textContent = '';
-      } catch (err) {
-        console.error('Playback failed:', err);
-        btn.disabled = false;
-        btn.textContent = 'Try Again';
-        hint.textContent = 'Could not play audio. Check file URL.';
-      }
-    });
-
-    // Fade out after audio ends
-    audio.addEventListener('ended', () => {
-      body.style.opacity = '0';
-      setTimeout(() => {
-        window.location.href = "about:blank";
-      }, 2000);
-    });
-  </script>
+  <!-- Your custom script -->
+  <script src="script.js"></script>
 </body>
 </html>
