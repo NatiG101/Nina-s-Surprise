@@ -13,20 +13,20 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: center;   /* vertical centering */
+      align-items: center;       /* horizontal centering */
       background: linear-gradient(135deg, #fff0f6, #ffe6f0);
       font-family: Arial, sans-serif;
       transition: opacity 2s ease;
       overflow: hidden;
     }
 
-    /* Stars background */
+    /* Star container */
     .stars {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: -1;
+      z-index: -1; /* behind everything */
       overflow: hidden;
     }
     .star {
@@ -42,27 +42,20 @@
     }
     @keyframes drift {
       from { transform: translateY(0); }
-      to   { transform: translateY(-50px); }
+      to   { transform: translateY(-50px); } /* stars drift upward */
     }
 
-    /* Rose animation hidden initially */
     dotlottie-wc {
-      width: 60vw;   /* larger but still responsive */
-      height: 60vw;
-      max-width: 700px;
-      max-height: 700px;
-      display: none; /* hidden until button click */
-      image-rendering: crisp-edges; /* force sharp rendering */
-    }
-    dotlottie-wc.visible {
-      display: block;
+      width: 50vw;
+      height: 50vw;
+      max-width: 600px;
+      max-height: 600px;
     }
 
-    /* Romantic text */
     h1 {
       margin-top: 5vh;
       font-family: 'Tangerine', cursive;
-      font-size: 8vw;
+      font-size: 10vw;
       max-font-size: 100px;
       color: #b30059;
       text-shadow: 0 0 10px rgba(255,255,255,0.8);
@@ -71,8 +64,6 @@
       transition: opacity 1.5s ease, transform 1.5s ease;
       animation: glow 3s ease-in-out infinite alternate;
       text-align: center;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
     h1.visible { opacity: 1; transform: translateY(0); }
 
@@ -104,8 +95,8 @@
   <!-- Stars background -->
   <div class="stars" id="stars"></div>
 
-  <!-- Rose animation (hidden until Play) -->
-  <dotlottie-wc id="roseAnim"
+  <!-- Rose animation -->
+  <dotlottie-wc
     src="https://lottie.host/f76a8dc1-1aa7-4d0a-b7f8-00a47706b1d7/ce0IcNAP5M.lottie"
     autoplay loop>
   </dotlottie-wc>
@@ -131,17 +122,19 @@
     const msg = document.getElementById('message');
     const hint = document.getElementById('hint');
     const body = document.getElementById('pageBody');
-    const roseAnim = document.getElementById('roseAnim');
 
     // Generate 30 random stars
     const starContainer = document.getElementById('stars');
     for (let i = 0; i < 30; i++) {
       const star = document.createElement('div');
       star.className = 'star';
+      // Random position
       star.style.top = Math.random() * 100 + '%';
       star.style.left = Math.random() * 100 + '%';
+      // Random animation delay
       star.style.animationDelay = (Math.random() * 4) + 's';
-      const size = (Math.random() * 3) + 1;
+      // Random size
+      const size = (Math.random() * 3) + 1; // 1px–4px
       star.style.width = size + 'px';
       star.style.height = size + 'px';
       starContainer.appendChild(star);
@@ -153,7 +146,6 @@
       try {
         await audio.play();
         msg.classList.add('visible');
-        roseAnim.classList.add('visible'); // show rose animation
         btn.style.display = 'none';
         hint.textContent = '';
       } catch (err) {
