@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <title>🌹 Surprise Rose</title>
+  <!-- Import Tangerine font -->
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
   <style>
     html,body{height:100%;margin:0}
     body{
@@ -12,18 +14,25 @@
       align-items:center;
       background:linear-gradient(135deg,#fff0f6,#ffe6f0);
       font-family:Arial, sans-serif;
-      transition:opacity 2s ease; /* fade effect */
+      transition:opacity 2s ease;
     }
     dotlottie-wc{width:320px;height:320px;display:block}
     h1{
       margin-top:18px;
+      font-family:'Tangerine', cursive; /* romantic font */
+      font-size:3rem;
       color:#b30059;
-      text-shadow:1px 1px 3px #fff;
+      text-shadow:0 0 10px rgba(255,255,255,0.8);
       opacity:0;
       transform:translateY(20px);
-      transition:opacity .8s,transform .8s;
+      transition:opacity 1.5s ease, transform 1.5s ease;
+      animation: glow 3s ease-in-out infinite alternate;
     }
     h1.visible{opacity:1;transform:translateY(0)}
+    @keyframes glow {
+      from { text-shadow:0 0 10px rgba(255,255,255,0.6); }
+      to { text-shadow:0 0 25px rgba(255,200,220,1); }
+    }
     .btn{
       margin-top:20px;
       background:#b30059;
@@ -87,11 +96,8 @@
     audio.addEventListener('ended', () => {
       body.style.opacity = '0'; // fade out page
       setTimeout(() => {
-        // Option A: redirect to blank page
-        window.location.href = "about:blank";
-        // Option B: try to close (works only if opened by JS)
-        // window.close();
-      }, 2000); // wait for fade effect
+        window.location.href = "about:blank"; // redirect to blank page
+      }, 2000);
     });
   </script>
 </body>
