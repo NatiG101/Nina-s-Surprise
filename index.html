@@ -6,46 +6,68 @@
   <!-- Import Tangerine font -->
   <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
   <style>
-    html,body{height:100%;margin:0}
-    body{
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(135deg,#fff0f6,#ffe6f0);
-      font-family:Arial, sans-serif;
-      transition:opacity 2s ease;
-    }
-    dotlottie-wc{width:320px;height:320px;display:block}
-    h1{
-      margin-top:18px;
-      font-family:'Tangerine', cursive; /* romantic font */
-      font-size:3rem;
-      color:#b30059;
-      text-shadow:0 0 10px rgba(255,255,255,0.8);
-      opacity:0;
-      transform:translateY(20px);
-      transition:opacity 1.5s ease, transform 1.5s ease;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-    h1.visible{opacity:1;transform:translateY(0)}
-    @keyframes glow {
-      from { text-shadow:0 0 10px rgba(255,255,255,0.6); }
-      to { text-shadow:0 0 25px rgba(255,200,220,1); }
-    }
-    .btn{
-      margin-top:20px;
-      background:#b30059;
-      color:#fff;
-      border:none;
-      padding:10px 18px;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:1rem;
-      box-shadow:0 6px 18px rgba(179,0,89,0.25);
-    }
-    .hint{margin-top:8px;color:#666;font-size:.9rem}
-  </style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* vertical centering */
+    align-items: center;       /* horizontal centering */
+    background: linear-gradient(135deg, #fff0f6, #ffe6f0);
+    font-family: Arial, sans-serif;
+    transition: opacity 2s ease;
+  }
+
+  /* Rose animation scales with screen size */
+  dotlottie-wc {
+    width: 50vw;   /* half the viewport width */
+    height: 50vw;  /* keep square ratio */
+    max-width: 600px;  /* cap on large screens */
+    max-height: 600px;
+  }
+
+  /* Romantic text scales with screen size */
+  h1 {
+    margin-top: 5vh;
+    font-family: 'Tangerine', cursive;
+    font-size: 10vw;   /* scales with viewport width */
+    max-font-size: 100px; /* cap size on desktop */
+    color: #b30059;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+    animation: glow 3s ease-in-out infinite alternate;
+    text-align: center;
+  }
+  h1.visible { opacity: 1; transform: translateY(0); }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px rgba(255,255,255,0.6); }
+    to   { text-shadow: 0 0 25px rgba(255,200,220,1); }
+  }
+
+  .btn {
+    margin-top: 3vh;
+    background: #b30059;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 6px 18px rgba(179,0,89,0.25);
+  }
+
+  .hint {
+    margin-top: 2vh;
+    color: #666;
+    font-size: .9rem;
+  }
+</style>
+
 </head>
 <body id="pageBody">
   <!-- Rose animation -->
